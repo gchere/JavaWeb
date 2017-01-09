@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<!-- package包名，区分不同模块，名称唯一。可以继承父类package -->
+	<package name="default" extends="struts-default">
+		<!-- action 控制器配置 
+		name url地址，与页面form中的action对应
+		class具体的控制器类
+		result-name 跳转结果别名，后面是具体的地址
+		-->
+		
+		<action name="login1" class="com.gc.train.struts2.login.LoginAction">
+			<result name="success">/login/success.jsp</result>
+			<result name="error">/login/error.jsp</result>
+		</action>
+		<action name="login2" class="com.gc.train.struts2.login.LoginAction2">
+			<result name="success">/login/success.jsp</result>
+			<result name="error">/login/error.jsp</result>
+		</action>
+		<action name="login3" class="com.gc.train.struts2.login.LoginAction3">
+			<result name="success">/login/success.jsp</result>
+			<result name="error">/login/error.jsp</result>
+		</action>
+	</package>
+
+</struts>
