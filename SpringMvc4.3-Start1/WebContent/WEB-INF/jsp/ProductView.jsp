@@ -4,19 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login success</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<table>
-		<tr>
-			<td>用户：</td>
-			<td>${username}</td>
-		</tr>
-		<tr>
-			<td>密码：</td>
-			<td>${password}</td>
-		</tr>
-	</table>
-	<a href="javascript:history.back(-1)">返回</a>+
+		<div id="global">
+			<h4>The product has been saved!</h4>
+			<h5>Details:</h5>
+			Tips:${message} <br/>
+			Product ID:${product.id} <br/>
+			Product Name:${product.name} <br/>
+			Description:${product.description} <br/>
+			Price:￥${product.price} <br/>
+		</div>
 </body>
 </html>
