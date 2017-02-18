@@ -1,9 +1,16 @@
 package com.gc.springmvc.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.omg.PortableServer.POA;
 import org.springframework.stereotype.Service;
 
 import com.gc.springmvc.domian.Product;
@@ -35,5 +42,34 @@ public class ProductServiceImpl implements ProductService {
 	public Product get(long id) {
 		return products.get(id);
 	}
+	@Override
+	public List<Product> proShow() {
+		List<Product> listShow = new ArrayList<Product>(products.values());
+		/*Set<Entry<Long, Product>> inSet = new HashSet<Entry<Long, Product>>();
+		inSet = products.entrySet();
+		Iterator<Entry<Long, Product>> iterator = inSet.iterator();
+		for(iterator.hasNext()){
+			listShow.add(iterator.next());*/
+		return listShow;
+		}
+	@Override
+	public List<Product> del(long id) {
+	  	products.remove(id);
+	  	List<Product> listShow = new ArrayList<Product>(products.values());
+	  	return listShow;
+	}
+	@Override
+	public Product update(long id) {
+		Product product = products.get(id);
+		return product;
+	}
+	@Override
+	public List<Product> updated(Product product, long id) {
+		products.replace(id, product);
+		List<Product> listShow = new ArrayList<Product>(products.values());
+	  	return listShow;
+	}
+	
+	}
 
-}
+

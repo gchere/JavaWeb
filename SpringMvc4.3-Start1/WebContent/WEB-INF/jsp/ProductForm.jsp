@@ -14,16 +14,22 @@
 				<label for="name">Product name</label>
 				<input type="text" id="name" name="name" value="" tabindex="1" />
 				
+				<label for="name">Product vender</label>
+				<input type="text" id="vender" name="vender" value="" tabindex="2" />
+				
+				<label for="name">Address</label>
+				<input type="text" id="address" name="address" value="" tabindex="3" />
+				
 				<label for="name">Description</label>
-				<input type="text" id="description" name="description" value="" tabindex="2" />
+				<input type="text" id="description" name="description" value="" tabindex="4" />
 				
 				<label for="name">Price</label>
-				<input type="text" id="price" name="price" value="" tabindex="3" />
+				<input type="text" id="price" name="price" value="" tabindex="5" />
 				
 				<div id="buttons">
 				<label for="dummy"></label>
-				<input id="reset" type="reset" tabindex="4" />
-				<input id="submit" type="submit" tabindex="5" value="Add Product" />
+				<input id="reset" type="reset" tabindex="6" />
+				<input id="submit" type="submit" tabindex="7" value="Add Product" />
 				</div>
 			</fieldset>
 		</form>

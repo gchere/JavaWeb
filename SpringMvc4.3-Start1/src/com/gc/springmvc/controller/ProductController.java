@@ -1,9 +1,14 @@
 package com.gc.springmvc.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +29,12 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private HttpServletRequest request;
+	
 	@RequestMapping(value="/product_input")
 	public String inputProduct() {
-		logger.info("inputProduct 被盗用！ ");
+		logger.info("inputProduct 被掉用！ ");
 		return "ProductForm";
 	}
 	@RequestMapping(value="/product_save",method=RequestMethod.POST)
@@ -35,6 +43,8 @@ public class ProductController {
 		
 		Product product = new Product();
 		product.setName(productForm.getName());
+		product.setVender(productForm.getVender());
+		product.setAddress(productForm.getAddress());
 		product.setDescription(productForm.getDescription());
 		
 		try {
@@ -60,6 +70,48 @@ public class ProductController {
 			Product product = productService.get(id);
 			model.addAttribute("product",product);
 			return "ProductView";
+		}
+		
+		
+		//新建一个现实的action。用来展示所有产品信息。
+		@RequestMapping(value="/product_view/product_show")
+		public String showPro(Model model){
+			List<Product> proList = productService.proShow();
+ 			model.addAttribute("proList",proList);
+			return"ProductList";
+		}
+		
+		//按照id删除产品
+		@RequestMapping(value="/product_view/product_del")
+		public String del(@RequestParam long id ) {
+		 	productService.del(id);
+			return "ProductDel";
+		}
+		
+		//修改选中
+		@RequestMapping(value="/product_view/product_uping")
+		public String  updatePro(@RequestParam long id,Model model){
+			Product product = productService.update(id);
+			model.addAttribute("product", product);
+			return "ProductUp";
+		}
+		//成功修改
+		@RequestMapping(value="/product_view/product_updated" ,method=RequestMethod.POST)
+		public String updated(ProductForm productForm ) {
+			long id =Long.parseLong(request.getParameter("id"));
+			Product product = productService.get(id);
+			product.setName(productForm.getName());
+			product.setVender(productForm.getVender());
+			product.setAddress(productForm.getAddress());
+			product.setDescription(productForm.getDescription());
+			
+			try {
+				product.setPrice(Double.parseDouble(productForm.getPrice()));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+			
+			return "ProductUpdated";
 		}
 	
 }

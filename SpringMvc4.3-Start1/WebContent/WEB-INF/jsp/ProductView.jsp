@@ -13,8 +13,11 @@
 			Tips:${message} <br/>
 			Product ID:${product.id} <br/>
 			Product Name:${product.name} <br/>
+			Product Vender:${product.vender} <br/>
+			Address:${product.address} <br/>
 			Description:${product.description} <br/>
 			Price:￥${product.price} <br/>
+			<a href="product_show.action">显示所有产品</a>
 		</div>
 </body>
 </html>
